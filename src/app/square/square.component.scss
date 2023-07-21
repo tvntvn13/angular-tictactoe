@@ -1,0 +1,35 @@
+.ex {
+  background-color: #d962e4;
+  color:#7f00f0 ;
+  border-radius: 7px;
+  border: 2px solid  #e100ff;
+}
+
+.empty {
+  background-color: #323232;
+  color:#323232 ;
+  border-radius: 7px;
+  border: 2px solid  #c3c3c3;
+}
+
+.oh {
+  background-color: #96dadf;
+  color:#1f6464;
+  border-radius: 7px;
+  border: 2px solid #00bcc4;
+}
+
+.oh:hover {
+  background-color: #70b5c6;
+  color:#5a8ea4;
+}
+
+.empty:hover {
+  color: #828282;
+  background-color:#d98ca0;
+}
+
+.ex:hover {
+  background-color: #9362e4;
+  color:#4d00f0 ;
+}

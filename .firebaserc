@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angular-ticktack"
+  },
+  "targets": {
+    "angular-ticktack": {
+      "hosting": {
+        "myapp": [
+          "angular-ticktack"
+        ]
+      }
+    }
+  }
+}

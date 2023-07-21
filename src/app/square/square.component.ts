@@ -3,7 +3,9 @@ import { Component, Input } from "@angular/core";
 @Component({
   selector: "app-square",
   template: `
-      <button>{{value}}</button>
+     <!--  <button class="empty" *ngIf="value">{{value}}</button> -->
+      <button class="ex" *ngIf="value == 'X'">{{value}}</button>
+      <button class="oh" *ngIf="value == 'O'">{{value}}</button>
   `,
   styles: [
     `button {
@@ -13,6 +15,7 @@ import { Component, Input } from "@angular/core";
       font-weight:bold;
     }`,
   ],
+  styleUrls: ["./square.component.scss"],
 })
 export class SquareComponent {
   @Input()

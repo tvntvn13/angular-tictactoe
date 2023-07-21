@@ -1,14 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-board",
-  templateUrl: "./board.component.html",
-  styleUrls: ["./board.component.scss"],
+  selector: 'app-board',
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
   squares: any[] = [];
   xIsNext: boolean = false;
-  winner: string = "";
+  winner: string = '';
+  loser: string = '';
 
   constructor() {}
 
@@ -18,12 +20,12 @@ export class BoardComponent implements OnInit {
 
   newGame() {
     this.squares = Array(9).fill(null);
-    this.winner = "";
+    this.winner = '';
     this.xIsNext = true;
   }
 
   get player() {
-    return this.xIsNext ? "X" : "O";
+    return this.xIsNext ? 'X' : 'O';
   }
 
   makeMove(idx: number) {
@@ -54,6 +56,6 @@ export class BoardComponent implements OnInit {
         return this.squares[a];
       }
     }
-    return "";
+    return '';
   }
 }
