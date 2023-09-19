@@ -41,10 +41,11 @@ export class BoardComponent implements OnInit {
   }
 
   makeMove(idx: number) {
-    if (!this.squares[idx] && !this.calculateWinner() && !this.gameOver) {
+    if (!this.squares[idx] && !this.gameOver) {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
       this.winner = this.calculateWinner();
+      if (this.gameOver) return;
       if (!this.xIsNext) {
         if (this.easyMode) return this.randomMove(this.squares);
         const bestMove = this.minimax(
@@ -81,10 +82,6 @@ export class BoardComponent implements OnInit {
         break;
       }
     }
-    // if (!this.isMovesLeft(board)) {
-    //   this.tie = true;
-    //   this.gameOver = true;
-    // }
   }
 
   isMovesLeft(board: string[]): boolean {
