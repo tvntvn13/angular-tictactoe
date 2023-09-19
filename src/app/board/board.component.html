@@ -1,11 +1,13 @@
 <div class="container">
-  <h1>Current Player: {{ player }}</h1>
-  <button (click)="newGame()">Start new Game</button>
-  <h2 *ngIf="winner">
+  <button [style.backgroundColor]="easyMode ? 'red' : 'blue'" id="easy-mode" (click)="toggleMode($event)">♔</button>
+  <h2 *ngIf="!tie" [style.opacity]="showWinner">
     Player {{ winner }} won the game!
   </h2>
+  <h2 *ngIf="tie">Game was a tie!</h2>
   <main>
     <app-square *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
     </app-square>
   </main>
+  <button *ngIf="showWinner == 0" class="start-button" (click)="newGame()">START GAME</button>
+  <button *ngIf="showWinner == 1" class="start-button" (click)="newGame()">RESTART</button>
 </div>

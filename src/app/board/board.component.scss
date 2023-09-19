@@ -1,36 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-  color: azure;
-  background-color :#323232;
+  color: #7b66fe;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: italic;
+  background-color: #170e26;
   display: flex;
   justify-content:center;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  text-shadow: 0 0 5px #7b66fe;
 }
 
 h1, h2 {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+#easy-mode {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: none;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+#easy-mode:hover {
+  transform: scale(1.2,1.2);
+}
+
+#player {
+  font-style: normal;
+  color: #9d95fc;
+}
+
+.container h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #ffa887;
+  text-shadow: 0 0 5px #ffa887;
 }
 
 main {
   display: grid;
   margin-left: auto;
   margin-right: auto;
-  grid-template-columns: 200px 200px 200px;
+  grid-template: repeat(3, 20vw) / repeat(3,20vw);
   gap: 10px;
 }
 
 app-square {
   border: 1px gray solid;
-  height: 200px;
+  height: auto;
   border-radius: 7px;
+  font-size: 1rem;
 }
 
-button {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+main app-square {
+  background-color: #323232;
+}
+
+main app-square:hover {
+  background-color: #ecf5f4;
+  box-shadow: 0px 0px 8px 4px #ecf0f466;
+}
+
+.start-button {
+  height: 2rem;
+  margin-top: 3rem;
   width: 25%;
   margin-left: 37.5%;
   padding: 5px;
+  border-radius: 10px;
+  background-color: #b584fc;
+  border: none;
+  box-shadow: 0 0 10px 4px #b584fc4d;
+  font-weight: bold;
+  color: #120b1c;
+}
+
+button:hover {
+  transform: scale(1.1,1.1);
+  background-color: #8853f0;
+  color: azure;
+}
+
+@media screen and (width <= 600px){
+  main {
+    grid-template: repeat(3, 30vw) / repeat(3, 30vw);
+    gap: 5px;
+  }
 }

@@ -1,7 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: "app-square",
+  selector: 'app-square',
   template: `
      <!--  <button class="empty" *ngIf="value">{{value}}</button> -->
       <button class="ex" *ngIf="value == 'X'">{{value}}</button>
@@ -15,9 +15,9 @@ import { Component, Input } from "@angular/core";
       font-weight:bold;
     }`,
   ],
-  styleUrls: ["./square.component.scss"],
+  styleUrls: ['./square.component.scss'],
 })
 export class SquareComponent {
   @Input()
-  value: "X" | "O" = "X";
+    value: string = 'X';
 }
