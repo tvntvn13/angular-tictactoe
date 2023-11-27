@@ -14,11 +14,13 @@ export class BoardComponent implements OnInit {
   easyMode = false;
   tie = false;
   gameOver = false;
+  gameStarted = false;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.newGame();
+    this.squares = Array(9).fill(null);
+    // this.newGame();
     this.showWinner = 0;
   }
 
@@ -31,9 +33,13 @@ export class BoardComponent implements OnInit {
     this.squares = Array(9).fill(null);
     this.winner = 'TEMP';
     this.showWinner = 0;
-    this.xIsNext = true;
+    this.xIsNext = false;
     this.tie = false;
     this.gameOver = false;
+    this.gameStarted = true;
+    setTimeout(() => {
+      this.makeMove(4);
+    }, 200);
   }
 
   get player() {
@@ -41,27 +47,29 @@ export class BoardComponent implements OnInit {
   }
 
   makeMove(idx: number) {
+    if (!this.gameStarted) return;
     if (!this.squares[idx] && !this.gameOver) {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
       this.winner = this.calculateWinner();
       if (this.gameOver) return;
       if (!this.xIsNext) {
-        if (this.easyMode) return this.randomMove(this.squares);
-        const bestMove = this.minimax(
-          this.squares,
-          0,
-          -Infinity,
-          Infinity,
-          true,
-        );
-        this.squares[bestMove.index] = this.player;
-        this.xIsNext = !this.xIsNext;
+        setTimeout(() => {
+          if (this.easyMode) return this.randomMove(this.squares);
+          const bestMove = this.minimax(
+            this.squares,
+            0,
+            -Infinity,
+            Infinity,
+            true,
+          );
+          this.squares[bestMove.index] = this.player;
+          this.xIsNext = !this.xIsNext;
+          this.winner = this.calculateWinner();
+          if (!this.isMovesLeft(this.squares) && !this.winner) this.tie = true;
+        }, 200);
       }
-      this.winner = this.calculateWinner();
-      if (!this.isMovesLeft(this.squares)) this.tie = true;
     }
-    this.winner = this.calculateWinner();
   }
 
   randomMove(board: string[]) {
@@ -110,10 +118,10 @@ export class BoardComponent implements OnInit {
         return this.squares[a];
       }
     }
-    if (!this.isMovesLeft(this.squares)) {
-      this.tie = true;
-      this.gameOver = true;
-    }
+    // if (!this.isMovesLeft(this.squares)) {
+    //   this.tie = true;
+    //   this.gameOver = true;
+    // }
     return '';
   }
 
@@ -165,7 +173,7 @@ export class BoardComponent implements OnInit {
           const { score } = this.minimax(board, depth + 1, alpha, beta, false);
           board[i] = '';
 
-          if (score > bestScore) {
+          if (score >= bestScore) {
             bestScore = score;
             bestMove = i;
           }
@@ -187,7 +195,7 @@ export class BoardComponent implements OnInit {
           const { score } = this.minimax(board, depth + 1, alpha, beta, true);
           board[i] = '';
 
-          if (score < bestScore) {
+          if (score <= bestScore) {
             bestScore = score;
             bestMove = i;
           }

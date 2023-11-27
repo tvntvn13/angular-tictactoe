@@ -8,6 +8,6 @@
     <app-square *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)">
     </app-square>
   </main>
-  <button *ngIf="showWinner == 0" class="start-button" (click)="newGame()">START GAME</button>
+  <button *ngIf="showWinner == 0" class="start-button" (click)="newGame()">START</button>
   <button *ngIf="showWinner == 1" class="start-button" (click)="newGame()">RESTART</button>
 </div>
