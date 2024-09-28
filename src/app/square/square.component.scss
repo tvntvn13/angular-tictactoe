@@ -6,6 +6,7 @@ body {
   color: #8045a6;
   border-radius: 7px;
   border: 2px solid  #e100ff;
+  box-shadow: 0px 0px 8px 4px #ff8df166;
 }
 
 .empty {
@@ -35,5 +36,6 @@ body {
 .ex:hover {
   background-color: #8045a6;
   color: #d065ff;
-  box-shadow: 0px 0px 8px 4px #ca2bfe4d;
+  // box-shadow: 0px 0px 8px 4px #ca2bfe4d;
+  box-shadow: 0px 0px 8px 4px #ff8df166;
 }
