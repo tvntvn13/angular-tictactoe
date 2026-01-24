@@ -158,9 +158,20 @@ export class BoardComponent implements OnInit {
     isMaximizing: boolean,
     //eslint-disable-next-line
   ): any {
+    // First, check if there's a winner (terminal state)
+    const score = this.evaluate(board);
+    if (score !== 0) {
+      // Adjust score by depth: prefer faster wins, slower losses
+      if (score > 0) {
+        return { score: score - depth, index: -1 }; // AI wins - prefer faster
+      } else {
+        return { score: score + depth, index: -1 }; // Human wins - prefer slower losses
+      }
+    }
+
+    // Then check if no moves left (draw)
     if (!this.isMovesLeft(board)) {
-      const score = this.evaluate(board);
-      return { score, index: -1 };
+      return { score: 0, index: -1 };
     }
 
     if (isMaximizing) {
@@ -171,9 +182,9 @@ export class BoardComponent implements OnInit {
         if (!board[i]) {
           board[i] = 'O';
           const { score } = this.minimax(board, depth + 1, alpha, beta, false);
-          board[i] = '';
+          board[i] = null as unknown as string;
 
-          if (score >= bestScore) {
+          if (score > bestScore) {
             bestScore = score;
             bestMove = i;
           }
@@ -193,9 +204,9 @@ export class BoardComponent implements OnInit {
         if (!board[i]) {
           board[i] = 'X';
           const { score } = this.minimax(board, depth + 1, alpha, beta, true);
-          board[i] = '';
+          board[i] = null as unknown as string;
 
-          if (score <= bestScore) {
+          if (score < bestScore) {
             bestScore = score;
             bestMove = i;
           }
